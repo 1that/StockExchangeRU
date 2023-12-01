@@ -1,0 +1,23 @@
+#Save {
+    color: black;
+    font-size: 32px;
+    &:hover {
+        color: rgb(18, 138, 18);
+    }
+}
+#Delete {
+    color: black;
+    font-size: 32px;
+    &:hover {
+        color: rgb(138, 18, 18);
+    }
+}
+#Name, #Balance {
+    color: white;
+    font-size: 28px;
+    font-family: 'Letov';
+}
+@font-face {
+    font-family: 'Letov';
+    src: url(../../fonts/Letov.otf);
+}

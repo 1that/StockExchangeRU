@@ -1,0 +1,16 @@
+.NavigationBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.NavigationBar h1 {
+    color: white;
+    font-size: 48px;
+    margin: 0;
+    font-family: 'Letov';
+}
+@font-face {
+    font-family: 'Letov';
+    src: url('../fonts/Letov.otf');
+}
