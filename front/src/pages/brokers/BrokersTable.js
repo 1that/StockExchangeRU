@@ -1,22 +1,23 @@
 import React from 'react';
-import './BrokersTable.css';
+import './style/BrokersTable.css';
 import * as material from '@mui/material';
 import * as icon from '@mui/icons-material';
 
 const rows = [
-    {name: 'Adam Smith', balance: '1000'},
-    {name: 'Mellony Adams', balance: '700'},
-    {name: 'James Mellon', balance: '1010'}
+    {firstName: 'Adam', lastName: 'Smith', balance: '1000'},
+    {firstName: 'Mellony', lastName: 'Adams', balance: '700'},
+    {firstName: 'James', lastName: 'Mellon', balance: '1010'}
 ];
 
 function BrokersTable() {
     return (
         <material.TableContainer component={material.Paper}  
-        sx={{ minWidth: 400, width: 600, backgroundColor: '#5a5a5a' }}>
+        sx={{ minWidth: 400, width: 650, backgroundColor: '#5a5a5a' }}>
             <material.Table aria-label='simple table'>
                 <material.TableHead>
                     <material.TableRow>
-                        <material.TableCell id='Name' sx={{ color: 'white'}}>Имя Фамилия</material.TableCell>
+                        <material.TableCell id='FirstName' sx={{ color: 'white'}}>Имя</material.TableCell>
+                        <material.TableCell id='LastName' sx={{ color: 'white'}}>Фамилия</material.TableCell>
                         <material.TableCell id='Balance' align='center' sx={{ color: 'white'}}>Баланс</material.TableCell>
                         <material.TableCell align='center'></material.TableCell>
                     </material.TableRow>
@@ -27,7 +28,8 @@ function BrokersTable() {
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <material.TableCell id='Name' sx={{ color: 'white'}} component='th' scope='row'>{row.name}</material.TableCell>
+                            <material.TableCell id='FirstName' sx={{ color: 'white'}} component='th' scope='row'>{row.firstName}</material.TableCell>
+                            <material.TableCell id='LastName' sx={{ color: 'white'}} component='th' scope='row'>{row.lastName}</material.TableCell>
                             <material.TableCell id='Balance' sx={{ color: 'white'}} align='center'>{row.balance}</material.TableCell>
                             <material.TableCell align='left'>
                                 <material.IconButton aria-label='save'><icon.Save id='Save' /></material.IconButton>

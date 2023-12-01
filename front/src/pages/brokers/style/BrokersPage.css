@@ -1,10 +1,15 @@
 h1 {
     color: white;
     font-size: 64px;
+    font-family: 'Letov';
 }
 .BrokersPage {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+@font-face {
+    font-family: 'Letov';
+    src: url('../../../fonts/Letov.otf');
 }

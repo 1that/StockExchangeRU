@@ -1,7 +1,0 @@
-#AddBroker {
-    margin: 20px;
-    /* color: #1d30c2; */
-    &:hover {
-        background-color: #232952;
-    }
-}

@@ -1,5 +1,5 @@
 import React from 'react';
-import './BrokersPage.css';
+import './style/BrokersPage.css';
 import BrokersTable from './BrokersTable';
 import AddBroker from './AddBroker';
 

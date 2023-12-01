@@ -12,12 +12,12 @@
         color: rgb(138, 18, 18);
     }
 }
-#Name, #Balance {
+#FirstName, #LastName, #Balance {
     color: white;
     font-size: 28px;
     font-family: 'Letov';
 }
 @font-face {
     font-family: 'Letov';
-    src: url(../../fonts/Letov.otf);
+    src: url(../../../fonts/Letov.otf);
 }

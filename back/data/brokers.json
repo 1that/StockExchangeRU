@@ -1,0 +1,10 @@
+[
+  {
+    "id": 0,
+    "firstName": "admin",
+    "lastName": "admin",
+    "login": "admin",
+    "balance": 1000,
+    "stocks": []
+  }
+]

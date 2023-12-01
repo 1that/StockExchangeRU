@@ -10,6 +10,17 @@
     margin: 0;
     font-family: 'Letov';
 }
+a {
+    margin: 5px;
+    color: #1976d2;
+    text-decoration: none;
+    font-family: 'Letov';
+    font-size: 28px;
+    &:hover {
+        color: #10508f;
+    
+    }
+}
 @font-face {
     font-family: 'Letov';
     src: url('../fonts/Letov.otf');

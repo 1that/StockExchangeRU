@@ -1,5 +1,4 @@
 import React from 'react';
-import './AddBroker.css';
 import * as material from '@mui/material';
 
 function AddBroker() {
@@ -15,7 +14,7 @@ function AddBroker() {
 
     return (
         <React.Fragment>
-            <material.Button id='AddBroker' sx={{borderRadius: 3}} variant='outlined' onClick={handleClickOpen}>
+            <material.Button id='AddBroker' sx={{borderRadius: 3, margin: 5}} variant='outlined' onClick={handleClickOpen}>
                 Добавить брокера
             </material.Button>
             <material.Dialog open={open} onClose={handleClose}>
@@ -58,8 +57,8 @@ function AddBroker() {
                         />
                 </material.DialogContent>
                 <material.DialogActions>
-                    <material.Button onClick={handleClose}>Отмена</material.Button>
-                    <material.Button onClick={handleClose}>Добавить</material.Button>
+                    <material.Button variant='contained' onClick={handleClose}>Отмена</material.Button>
+                    <material.Button variant='contained' onClick={handleClose}>Добавить</material.Button>
                 </material.DialogActions>
             </material.Dialog>
         </React.Fragment>
