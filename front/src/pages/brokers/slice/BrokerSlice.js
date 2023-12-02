@@ -1,36 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// const initialState = {
-//     id: 0,
-//     firstName: '',
-//     lastName: '',
-//     login: '',
-//     balance: 0 
-// };
-
 export const brokersSlice = createSlice({
     name: 'brokers',
     initialState: [],
     reducers: {
         addBroker: (state, action) => {
             state.push(action.payload);
-            // state.id = action.payload.id;
-            // state.firstName = action.payload.firstName;
-            // state.lastName = action.payload.lastName;
-            // state.login = action.payload.login;
-            // state.balance = action.payload.balance;
         },
-        deleteBroker: (state) => {
-            state.filter(broker => broker.id !== action.payload);
-            // state.id = 0;
-            // state.firstName = '';
-            // state.lastName = '';
-            // state.login = '';
-            // state.balance = 0;
+        deleteBroker: (state, action) => {
+            const index = state.findIndex(broker => broker.id === action.payload.id);
+            if (index !== -1) {
+                state.splice(index, 1);
+            }
+        },
+        updateBrokerBalance: (state, action) => {
+            const { id, newBalance } = action.payload;
+            const brokerIndex = state.findIndex(broker => broker.id === id);
+            if (brokerIndex !== -1) {
+                state[brokerIndex] = { ...state[brokerIndex], balance: newBalance };
+            }
         }
     }
 });
 
-export const { addBroker } = brokersSlice.actions;
+export const { addBroker, deleteBroker, updateBrokerBalance } = brokersSlice.actions;
+export const selectBrokers = state => state.brokers;
+export const selectBrokerById = (state, id) => state.brokers.find(broker => broker.id === id);
 
 export default brokersSlice.reducer;

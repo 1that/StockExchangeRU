@@ -6,9 +6,9 @@ function Router() {
         <div className='NavigationBar'>
             <h1>Админ панель</h1>
             <nav>
-                <a href='/brokers'>Brokers</a>
-                <a href='/trading'>Trading</a>
-                <a href='/stoks'>Stoks</a>
+                <a href='/brokers'>Брокеры</a>
+                <a href='/trading'>Трейдинг</a>
+                <a href='/stoks'>Настройки</a>
             </nav>
         </div>
     );

@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateBrokerDto } from './dto/create-broker.dto';
 import { UpdateBrokerDto } from './dto/update-broker.dto';
 import { Broker } from './entities/broker.entity';
-import fs from 'fs';
-import path from 'path';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class BrokerService {
@@ -12,7 +12,7 @@ export class BrokerService {
     private brokers: Broker[] = JSON.parse(fs.readFileSync(this.brokersPath, 'utf8'));
 
     create(createBrokerDto: CreateBrokerDto) {
-        const id = this.brokers.length + 1;
+        const id = this.brokers.length > 0 ? this.brokers[this.brokers.length - 1].id + 1 : 1;
         const broker = new Broker(
             id, 
             createBrokerDto.firstName, 
@@ -22,22 +22,32 @@ export class BrokerService {
             []
         );
         this.brokers.push(broker);
+        fs.writeFileSync(this.brokersPath, JSON.stringify(this.brokers));
         return broker;
     }
 
     findAll() {
-        return `This action returns all broker`;
+        return this.brokers;
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} broker`;
+    update(updateBrokerDto: UpdateBrokerDto) {
+        const broker = this.brokers.find(b => b.id === updateBrokerDto.id);
+        if (broker) {
+            broker.balance = updateBrokerDto.balance;
+            fs.writeFileSync(this.brokersPath, JSON.stringify(this.brokers));
+            return broker;
+        }
+        return 'Broker not found';
     }
 
-    update(id: number, updateBrokerDto: UpdateBrokerDto) {
-        return `This action updates a #${id} broker`;
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} broker`;
+    delete(id: number) {
+        console.log('delete');
+        const index = this.brokers.findIndex(broker => broker.id === id);
+        if (index !== -1) {
+            const [brokerToDelete] = this.brokers.splice(index, 1);
+            fs.writeFileSync(this.brokersPath, JSON.stringify(this.brokers));
+            return brokerToDelete;
+        }
+        return 'Broker not found';
     }
 }
