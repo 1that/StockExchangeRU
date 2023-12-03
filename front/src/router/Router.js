@@ -7,7 +7,7 @@ function Router() {
             <h1>Админ панель</h1>
             <nav>
                 <a href='/brokers'>Брокеры</a>
-                <a href='/trading'>Трейдинг</a>
+                <a href='/trading'>Торговля</a>
                 <a href='/stocks'>Акции</a>
             </nav>
         </div>

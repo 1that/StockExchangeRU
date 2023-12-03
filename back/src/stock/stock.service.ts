@@ -30,15 +30,7 @@ export class StockService {
         return this.stocks;
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} stock`;
-    }
-
-    update(id: number, updateStockDto: UpdateStockDto) {
-        return `This action updates a #${id} stock`;
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} stock`;
+    currentStocks(indexes: Array<Number>) {
+        return this.stocks.filter(stock => indexes.includes(stock.id));
     }
 }

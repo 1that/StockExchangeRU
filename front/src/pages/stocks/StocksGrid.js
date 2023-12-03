@@ -5,6 +5,7 @@ import * as icon from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { selectStocks } from './slice/StockSlice';
 import { Line } from 'react-chartjs-2';
+import { io } from 'socket.io-client'
 import { 
     Chart as ChartJS,
     LineElement,
@@ -23,6 +24,8 @@ ChartJS.register(
     Tooltip,
     Legend
 );
+
+const stocksSocket = io('http://localhost:443/stocks');
 
 function StocksGrid() {
     const [openGraph, setOpenGraph] = React.useState(false);
@@ -96,18 +99,18 @@ function StocksGrid() {
     ];
 
     const rows = useSelector((state) => selectStocks(state));
-    console.log(rows);
+    
     const handleClose = () => {
         setOpenTable(false);
         setOpenGraph(false);
     };
 
     const data = {
-        labels: chartDate,
+        labels: chartDate?.reverse(),
         datasets: [
             {
                 label: chartData?.companySymbol,
-                data: chartOpen,
+                data: chartOpen?.reverse(),
                 fill: true,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -123,6 +126,9 @@ function StocksGrid() {
                 pageSize={8}
                 pageSizeOptions={[8, 16]}
                 checkboxSelection
+                onRowSelectionModelChange={(newSelection) => {
+                    stocksSocket.emit('stocksSelection', newSelection);
+                }}
                 sx={{ color: 'white', fontSize: 18 }}
             />
             <material.Dialog
@@ -147,7 +153,7 @@ function StocksGrid() {
                 maxWidth='lg'
                 fullWidth={true}
                 >
-                <material.DialogTitle>График</material.DialogTitle>
+                <material.DialogTitle>Таблица</material.DialogTitle>
                 <material.DialogContent>
                     <material.Table aria-label='charts table'>
                         <material.TableHead>

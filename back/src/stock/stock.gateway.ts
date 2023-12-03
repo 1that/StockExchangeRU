@@ -1,8 +1,9 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
-import { WebSocketGateway, SubscribeMessage, MessageBody } from '@nestjs/websockets';
+import { WebSocketGateway, SubscribeMessage, MessageBody, WebSocketServer } from '@nestjs/websockets';
 import { StockService } from './stock.service';
 import { CreateStockDto } from './dto/create-stock.dto';
 import { UpdateStockDto } from './dto/update-stock.dto';
+import { Server } from 'socket.io';
 
 @Controller('/stocks')
 @WebSocketGateway(
@@ -15,31 +16,16 @@ import { UpdateStockDto } from './dto/update-stock.dto';
     }
 )
 export class StockGateway {
+    @WebSocketServer() server: Server;
     constructor(private readonly stockService: StockService) {}
 
-    // @Post()
-    // create(@Body() createStockDto: CreateStockDto) {
-    //     return this.stockService.create(createStockDto);
-    // }
-
-    // @SubscribeMessage('findAllStock')
     @Get()
     findAll() {
         return this.stockService.findAll()
     }
 
-    // @SubscribeMessage('findOneStock')
-    // findOne(@MessageBody() id: number) {
-    //     return this.stockService.findOne(id);
-    // }
-
-    // @SubscribeMessage('updateStock')
-    // update(@MessageBody() updateStockDto: UpdateStockDto) {
-    //     return this.stockService.update(updateStockDto.id, updateStockDto);
-    // }
-
-    // @SubscribeMessage('removeStock')
-    // remove(@MessageBody() id: number) {
-    //     return this.stockService.remove(id);
-    // }
+    @SubscribeMessage('stocksSelection')
+    handleStocksSelection(@MessageBody() indexes: Array<Number>) {
+        return this.server.emit('currentStocksSelection', this.stockService.currentStocks(indexes));
+    }
 }
