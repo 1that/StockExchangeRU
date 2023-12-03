@@ -25,6 +25,5 @@ export const brokersSlice = createSlice({
 
 export const { addBroker, deleteBroker, updateBrokerBalance } = brokersSlice.actions;
 export const selectBrokers = state => state.brokers;
-export const selectBrokerById = (state, id) => state.brokers.find(broker => broker.id === id);
 
 export default brokersSlice.reducer;

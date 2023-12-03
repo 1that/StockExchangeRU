@@ -1,12 +1,13 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 import BrokersPage from './pages/brokers/BrokersPage';
+import StocksPage from './pages/stocks/StocksPage';
 
 const router = createBrowserRouter([
+    // {path: '/', element: <MainPage />}
     {path: '/brokers', element: <BrokersPage/>},
-    // {path: '/brokers', element: <BrokersPage/>},
     // {path: '/trading', element: <TradingPage/>},
-    // {path: '/stoks', element: <StoksPage/>}
+    {path: '/stocks', element: <StocksPage/>}
 ]);
 
 function App() {

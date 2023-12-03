@@ -8,7 +8,7 @@ function Router() {
             <nav>
                 <a href='/brokers'>Брокеры</a>
                 <a href='/trading'>Трейдинг</a>
-                <a href='/stoks'>Настройки</a>
+                <a href='/stocks'>Акции</a>
             </nav>
         </div>
     );

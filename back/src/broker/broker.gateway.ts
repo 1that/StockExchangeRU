@@ -8,7 +8,7 @@ import { Server } from 'socket.io';
     namespace: '/brokers',
     cors: {
         origin: '*',
-        methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
+        methods: ['GET', 'POST', 'DELETE', 'PUT'],
     },
 })
 export class BrokerGateway {

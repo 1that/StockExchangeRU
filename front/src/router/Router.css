@@ -7,8 +7,8 @@
 .NavigationBar h1 {
     color: white;
     font-size: 48px;
-    margin: 0;
-    font-family: 'Letov';
+    margin: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 a {
     margin: 10px;
@@ -18,10 +18,5 @@ a {
     font-size: 28px;
     &:hover {
         color: #10508f;
-    
     }
-}
-@font-face {
-    font-family: 'Letov';
-    src: url('../fonts/Letov.otf');
 }

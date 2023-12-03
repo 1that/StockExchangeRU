@@ -27,7 +27,7 @@ function BrokersTable() {
     return (
         <material.TableContainer component={material.Paper}  
         sx={{ minWidth: 400, width: 'auto', backgroundColor: '#5a5a5a' }}>
-            <material.Table aria-label='simple table'>
+            <material.Table aria-label='brokers table'>
                 <material.TableHead>
                     <material.TableRow>
                         <material.TableCell id='FirstName' sx={{ color: 'white'}}>Имя</material.TableCell>
@@ -60,11 +60,11 @@ function BrokersTable() {
                                 />
                             </material.TableCell>
                             <material.TableCell align='left'>
-                                <material.IconButton aria-label='save' onClick={() => saveClick(broker.id, broker.balance)}>
-                                    <icon.Save id='Save' />
+                                <material.IconButton aria-label='save' id='Save' onClick={() => saveClick(broker.id, broker.balance)}>
+                                    <icon.Save id='Icon' />
                                 </material.IconButton>
-                                <material.IconButton aria-label='delete' onClick={() => deleteClick(broker.id)}>
-                                    <icon.Delete id='Delete' />
+                                <material.IconButton aria-label='delete' id='Delete' onClick={() => deleteClick(broker.id)}>
+                                    <icon.Delete id='Icon' />
                                 </material.IconButton>
                             </material.TableCell>
                         </material.TableRow>
