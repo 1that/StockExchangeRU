@@ -16,8 +16,8 @@ export class Stocks {
         public selected: boolean
     ) {}
 
-    getPrice(date: string) {
-        const stock = this.stock.find(stock => stock.Date === date);
-        return stock ? stock.Open : null;
-    }
+    // getPrice(date: string) {
+    //     const stock = this.stock.find(stock => stock.Date === date);
+    //     return stock ? stock.Open : null;
+    // }
 }

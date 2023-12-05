@@ -5,7 +5,7 @@ import StocksPage from './pages/stocks/StocksPage';
 import TradingPage from './pages/trading/TradingPage';
 
 const router = createBrowserRouter([
-    //{path: '/', element: <MainPage />}
+    {path: '/', element: <BrokersPage />},
     {path: '/brokers', element: <BrokersPage/>},
     {path: '/trading', element: <TradingPage/>},
     {path: '/stocks', element: <StocksPage/>}

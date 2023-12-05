@@ -28,4 +28,19 @@ export class StockGateway {
     handleStocksSelection(@MessageBody() indexes: Array<Number>) {
         return this.server.emit('currentStocksSelection', this.stockService.currentStocks(indexes));
     }
+
+    @SubscribeMessage('getStocksSelection')
+    handleGetSelectionsStocks() {
+        return this.server.emit('currentStocksSelection', this.stockService.getCurrentStocks());
+    }
+
+    @SubscribeMessage('getStocksInfo')
+    handleGetStocksInfo(@MessageBody() date: string) {
+        return this.server.emit('currentStocksInfo', this.stockService.getCurrentInfo(date));
+    }
+
+    // @SubscribeMessage('startTrade')
+    // handleStartTrade(@MessageBody() params: {speed : number, currentDate: string}) {
+    //     return this.server.emit('trade', this.stockService.startTrade(params));
+    // }
 }

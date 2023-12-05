@@ -113,7 +113,8 @@ function StocksGrid() {
                 data: chartOpen?.reverse(),
                 fill: true,
                 backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgb(255, 99, 132)',
+                pointRadius: 1
             },
         ],
     };

@@ -5,8 +5,8 @@ export class Broker {
         public lastName: string,
         public login: string,
         public balance: number, 
-        public stocks: Array<{ id: number, name: string, quantity: number, price: number }>) {
-    }
+        public stocks: Array<{ id: number, name: string, quantity: number, price: number }>
+    ) {}
 
     /*
     stock = {

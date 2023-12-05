@@ -46,6 +46,7 @@ function BrokersTable() {
                             <material.TableCell id='LastName' sx={{ color: 'white'}} component='th' scope='row'>{broker.lastName}</material.TableCell>
                             <material.TableCell id='Balance' sx={{ color: 'white'}} align='center'>
                                 <material.TextField 
+                                    helperText={broker.balance < 0 ? 'Баланс не может быть отрицательным' : ''}
                                     margin='dense'
                                     id='balace'
                                     type='number'
@@ -60,7 +61,7 @@ function BrokersTable() {
                                 />
                             </material.TableCell>
                             <material.TableCell align='left'>
-                                <material.IconButton aria-label='save' id='Save' onClick={() => saveClick(broker.id, broker.balance)}>
+                                <material.IconButton aria-label='save' id='Save' disabled={broker.balance < 0} onClick={() => saveClick(broker.id, broker.balance)}>
                                     <icon.Save id='Icon' />
                                 </material.IconButton>
                                 <material.IconButton aria-label='delete' id='Delete' onClick={() => deleteClick(broker.id)}>
