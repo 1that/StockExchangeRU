@@ -24,7 +24,7 @@ export class StockService {
         return new Stocks(index + 1, company.companyName, company.companySymbol, data, company.selected);
     });
 
-    private blockingTrade = false;
+    public blockingTrade = false;
 
     findAll() {
         return this.stocks;
@@ -57,25 +57,41 @@ export class StockService {
             });
     }
 
-    // startTrade(params: { speed: number, currentDate: string }) {
-    //     this.blockingTrade = true;
-    //     const dateParts = params.currentDate.split('-');
-    //     const date = new Date(Number(dateParts[0]), Number(dateParts[1]) - 1, Number(dateParts[2]));
-
-    //     date.setDate(date.getDate() + params.speed);
-
-    //     const updatedDate = `${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}/${date.getFullYear()}`;
-
-    //     const stocks = this.stocks.filter(stock => stock.selected);
-    //     const data = stocks.map(stock => {
-    //         const stockData = stock.stock.find(stockItem => stockItem.Date == updatedDate);
-    //         return {
-    //             id: stock.id,
-    //             companyName: stock.companyName,
-    //             companySymbol: stock.companySymbol,
-    //             data: stockData
-    //         };
-    //     });
-    //     return data;
-    // }
+    startTrade(params: { speed: number, currentDate: string }) {
+        // this.blockingTrade = true;
+    
+        // // Convert string date to Date object
+        // const dateParts = params.currentDate.split('-');
+        // const date = new Date(Number(dateParts[0]), Number(dateParts[1]) - 1, Number(dateParts[2]));
+    
+        // // Set interval to update date and get stock data
+        // const interval = setInterval(() => {
+        //     // Increase date by speed days
+        //     date.setDate(date.getDate() + params.speed);
+    
+        //     // Convert updated date back to string
+        //     const updatedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    
+        //     // Get stock data for the updated date
+        //     const stocksData = this.stocks
+        //         .filter(stock => stock.selected)
+        //         .map(stock => {
+        //             const stockData = stock.stock.find(stockItem => stockItem.Date === updatedDate);
+        //             return {
+        //                 id: stock.id,
+        //                 companyName: stock.companyName,
+        //                 companySymbol: stock.companySymbol,
+        //                 data: stockData
+        //             };
+        //         });
+    
+        //     // Emit stock data to all clients
+        //     this.server.emit('stocksData', stocksData);
+    
+        //     // Stop interval if trade is blocked
+        //     if (!this.blockingTrade) {
+        //         clearInterval(interval);
+        //     }
+        // }, 1000 / params.speed);
+    }
 }

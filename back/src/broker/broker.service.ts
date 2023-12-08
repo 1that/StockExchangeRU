@@ -41,12 +41,27 @@ export class BrokerService {
     }
 
     delete(id: number) {
-        console.log('delete');
         const index = this.brokers.findIndex(broker => broker.id === id);
         if (index !== -1) {
             const [brokerToDelete] = this.brokers.splice(index, 1);
             fs.writeFileSync(this.brokersPath, JSON.stringify(this.brokers));
             return brokerToDelete;
+        }
+        return 'Broker not found';
+    }
+
+    checkBroker(body: any) {
+        const broker = this.brokers.find(b => b.login === body.login);
+        if (broker) {
+            return broker;
+        }
+        return 'Broker not found'
+    }
+
+    findOne(id: number) {
+        const broker = this.brokers.find(b => b.id === id);
+        if (broker) {
+            return broker;
         }
         return 'Broker not found';
     }

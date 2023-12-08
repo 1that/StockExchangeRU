@@ -3,7 +3,9 @@ import { BrokerService } from './broker.service';
 import { CreateBrokerDto } from './dto/create-broker.dto';
 import { UpdateBrokerDto } from './dto/update-broker.dto';
 import { Server } from 'socket.io';
+import { Controller, Post, Get, Body, Param } from '@nestjs/common';
 
+@Controller('/brokers')
 @WebSocketGateway({
     namespace: '/brokers',
     cors: {
@@ -33,5 +35,15 @@ export class BrokerGateway {
     @SubscribeMessage('deleteBroker')
     delete(@MessageBody() id: number) {
         return this.server.emit('delete', this.brokerService.delete(id));
+    }
+
+    @Get(':id')
+    findOne(@Param() params: any) {
+        return this.brokerService.findOne(Number(params.id));
+    }
+
+    @Post()
+    checkBroker(@Body() body: any) {
+        return this.brokerService.checkBroker(body);
     }
 }

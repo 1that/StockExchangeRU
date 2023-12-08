@@ -13,7 +13,7 @@ function TradingPage() {
     
     stocksSocket.on('currentStocksSelection', (stocks) => {
         received = true;
-        console.log(stocks);
+        // console.log(stocks);
         dispatch(clearTradingStocks(stocks));
         dispatch(addTradingStocks(stocks));
     })

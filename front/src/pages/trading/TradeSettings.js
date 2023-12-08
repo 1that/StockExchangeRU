@@ -21,17 +21,18 @@ function SettingTrade() {
     }
 
     React.useEffect(() => {
-        console.log(currentStocks);
-        if (currentStocks.length > 0) {
-            handleDateChange(currentDate);
-        }
-
         const handleStocksInfo = (stocks) => {
+            console.log(stocks);
             stocks.forEach(stock => {
                 if (stock.data) {
                     const dateParts = stock.data.Date.split('/');
                     stock.data.Date = `${dateParts[2]}-${dateParts[0]}-${dateParts[1]}`;
+                    setCurrentDate(stock.data.Date);
                     stock.data.Open = stock.data.Open.replace('$', '');
+                } else if (stock.newDate) {
+                    const dateParts = stock.newDate.split('/');
+                    stock.newDate = `${dateParts[2]}-${dateParts[0]}-${dateParts[1]}`;
+                    setCurrentDate(stock.newDate);
                 }
             });
             dispatch(addTradingStocksInfo(stocks))
@@ -43,23 +44,6 @@ function SettingTrade() {
             stocksSocket.off('currentStocksInfo', handleStocksInfo);
         }
     }, [currentStocks, dispatch, currentDate]);
-
-    React.useEffect(() => {
-        let interval;
-        if (openTrade) {
-            interval = setInterval(() => {
-                setCurrentDate(currentDate => {
-                    const dateParts = currentDate.split('-');
-                    const date = new Date(Number(dateParts[0]), Number(dateParts[1]) - 1, Number(dateParts[2]));
-                    date.setDate(date.getDate() + 1);
-                    const newDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-                    handleDateChange(newDate);
-                    return newDate;
-                });
-            }, 1000 / speed);
-        }
-        return () => clearInterval(interval);
-    }, [openTrade, currentDate, speed]);
 
     return (
         <>
@@ -126,7 +110,10 @@ function SettingTrade() {
                     id='stop'
                     sx={{borderRadius: 3, margin: 2}}
                     variant='outlined'
-                    onClick={() => setOpenTrade(false)}
+                    onClick={() => {
+                        setOpenTrade(false)
+                        stocksSocket.emit('stopTrade');
+                    }}
                     >
                     Стоп
                 </material.Button>
@@ -144,7 +131,6 @@ function SettingTrade() {
                         {currentStocks.map(stock => {
                             const currentStockDate = stock.data ? stock.data.Date : currentDate;
                             const currentPrice = stock.data ? stock.data.Open : 'N/A';
-                            // const currentStock = data.stock.find(stock => stock.Date === currentDate);
                             return (
                                 <material.TableRow
                                     key={stock.id}
